@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Icon, Breadcrumb } from 'antd';
+import { Layout, Menu, Icon, Breadcrumb, Row } from 'antd';
 import styled from 'styled-components';
+import PathBar from '../../components/PathBar';
+import { MainTitle } from '../../components/common/common';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -15,9 +17,17 @@ export default function Portal() {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+      <Sider 
+        collapsible 
+        collapsed={collapsed} 
+        onCollapse={onCollapse}
+      >
         <Logo />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu 
+          theme="dark" 
+          defaultSelectedKeys={['1']} 
+          mode="inline"
+        >
           <Menu.Item key="1">
             <Icon type="pie-chart" />
             <span>Option 1</span>
@@ -58,21 +68,18 @@ export default function Portal() {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ background: '#fff', padding: 0 }}>
-          <div>1234565</div>
+        <Header style={{ display: 'flex', alignItems: 'center' }}>
+          <Row type='flex' justify='space-between' align='middle' style={{width: '100%'}}>
+            <IconStyle type="home" /> 
+            <IconStyle type="user" />
+          </Row>
         </Header>
-        <Content style={{ margin: '0 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+        <PathBar value={['portal']}></PathBar>
+        <Content style={{ margin: '16px' }}>
           <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-            Bill is a cat.
+            <MainTitle>商品清單</MainTitle>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );
@@ -82,4 +89,18 @@ const Logo = styled.div`
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+`;
+
+const IconStyle = styled(Icon)`
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+
+  :hover {
+    color: blue;
+  }
+
+  :active {
+    color: red;
+  }
 `;
