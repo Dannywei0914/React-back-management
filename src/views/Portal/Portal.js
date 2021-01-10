@@ -1,11 +1,78 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Icon, Breadcrumb, Row } from 'antd';
+import { Layout, Menu, Icon, Row, Table } from 'antd';
 import styled from 'styled-components';
 import PathBar from '../../components/PathBar';
 import { MainTitle } from '../../components/common/common';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+
+const columns = [
+  {
+    title: 'Full Name',
+    width: 100,
+    dataIndex: 'name',
+    key: 'name',
+    fixed: 'left',
+  },
+  {
+    title: 'Age',
+    width: 100,
+    dataIndex: 'age',
+    key: 'age',
+    fixed: 'left',
+  },
+  {
+    title: 'Column 1',
+    dataIndex: 'address',
+    key: '1',
+    width: 150,
+  },
+  {
+    title: 'Column 2',
+    dataIndex: 'address',
+    key: '2',
+    width: 150,
+  },
+  {
+    title: 'Column 3',
+    dataIndex: 'address',
+    key: '3',
+    width: 150,
+  },
+  {
+    title: 'Column 4',
+    dataIndex: 'address',
+    key: '4',
+    width: 150,
+  },
+  {
+    title: 'Column 5',
+    dataIndex: 'address',
+    key: '5',
+    width: 150,
+  },
+  {
+    title: 'Column 6',
+    dataIndex: 'address',
+    key: '6',
+    width: 150,
+  },
+  {
+    title: 'Column 7',
+    dataIndex: 'address',
+    key: '7',
+    width: 150,
+  },
+  { title: 'Column 8', dataIndex: 'address', key: '8' },
+  {
+    title: 'Action',
+    key: 'operation',
+    fixed: 'right',
+    width: 100,
+    render: () => <a>action</a>,
+  },
+];
 
 export default function Portal() {
   const [collapsed, setCollapsed] = useState(false);
@@ -14,6 +81,17 @@ export default function Portal() {
     console.log(collapsed);
     setCollapsed(!collapsed);
   };
+
+  const data = [];
+
+  for (let i = 0; i < 50; i++) {
+    data.push({
+      key: i,
+      name: `Edrward ${i}`,
+      age: 32,
+      address: `London Park no. ${i}`,
+    });
+  }
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -76,9 +154,10 @@ export default function Portal() {
         </Header>
         <PathBar value={['portal']}></PathBar>
         <Content style={{ margin: '16px' }}>
-          <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+          <div style={{ padding: 24, background: '#fff' }}>
             <MainTitle>商品清單</MainTitle>
           </div>
+          <Table columns={columns} dataSource={data} />
         </Content>
       </Layout>
     </Layout>
